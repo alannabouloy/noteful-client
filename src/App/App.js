@@ -19,8 +19,18 @@ class App extends Component {
 
   componentDidMount() {
     Promise.all([
-      fetch(`${config.API_ENDPOINT}/api/notes`),
-      fetch(`${config.API_ENDPOINT}/api/folders`)
+      fetch(`${config.API_ENDPOINT}/api/notes`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${config.TOKEN_KEY}`
+        },
+      }),
+      fetch(`${config.API_ENDPOINT}/api/folders`, {
+        method: 'GET',
+        headers: {
+          'Authorization' : `Bearer ${config.TOKEN_KEY}`
+        }
+      })
     ])
       .then(([notesRes, foldersRes]) => {
         if (!notesRes.ok)

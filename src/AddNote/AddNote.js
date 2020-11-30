@@ -23,6 +23,7 @@ export default class AddNote extends Component {
     fetch(`${config.API_ENDPOINT}/api/notes`, {
       method: 'POST',
       headers: {
+        'Authorization': `Bearer ${config.TOKEN_KEY}`,
         'content-type': 'application/json'
       },
       body: JSON.stringify(newNote),
